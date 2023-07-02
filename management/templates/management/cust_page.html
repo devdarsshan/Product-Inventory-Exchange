@@ -1,0 +1,50 @@
+{% extends 'management/mainpg.html' %}
+
+{% block content %}
+
+{% if messages %}
+    <div class="alert alert-warning" role="alert">
+        <ul class="mb-0">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<div class="row">
+    <div class="col-md">
+        <h5>SALE DETAILS</h5>
+        
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'cust_order_page' sup_id %}">Create Order</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Date</th>
+                    <th>Product_name</th>
+                    <th>size</th>
+                    <th>pcs</th>
+                    <th>Buy_cost</th>
+                    <th>Sale_cost</th>
+                    <th>Profit</th>
+                </tr>
+                {% for stock in list %}
+                <tr>
+                    <td>{{ stock.Date }}</td>
+                    <td>{{ stock.Product_name }}</td>
+                    <td>{{ stock.size }}</td>
+                    <td>{{ stock.pcs }}</td>
+                    <td>{{ stock.Buy_cost }}</td>
+                    <td>{{ stock.Sale_cost }}</td>
+                    <td>{{ stock.Profit }}</td>
+                    <!-- <td><a class="btn btn-sm btn-info" href="{% url 'payment_update_page' stock.id %}">Update</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'payment_delete_page' stock.id %}">Remove</a></td> -->
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

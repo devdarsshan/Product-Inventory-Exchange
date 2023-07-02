@@ -1,0 +1,40 @@
+{% extends 'management/mainpg.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+
+    <div class="col-md">
+        <h5>ORDER DETAILS</h5>        
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'supp_order_page' sup_id %}">Create New Order</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Date</th>
+                    <th>Size</th>
+                    <th>Pcs</th>
+                    <th>Piece Cost</th>
+                    <th>Total Cost</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+                {% for stock in sup_ord %}
+                <tr>
+                    <td>{{ stock.product_name }}</td>
+                    <td>{{ stock.Date }}</td>
+                    <td>{{ stock.size }}</td>
+                    <td>{{ stock.pcs }}</td>
+                    <td>{{ stock.Pcs_cost }}</td>
+                    <td>{{ stock.total_cost }}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'update_order_page' stock.id %}">Update</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order_page' stock.id %}">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

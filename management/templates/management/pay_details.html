@@ -1,0 +1,64 @@
+{% extends 'management/mainpg.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="To-Pay">
+                <div class="card-header">
+                    <h5 class="card-title">Credit Balance</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{Cred_bal}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="Total-Payed">
+                <div class="card-header">
+                    <h5 class="card-title">Total Payed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{Tot_pay}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <h5>PAYMENT DETAILS</h5>
+        
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'payment_order_page' sup_id %}">Pay Now</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+                {% for stock in pay_det %}
+                <tr>
+                    <td>{{ stock.Date }}</td>
+                    <td>{{ stock.Amount_payed }}</td>
+                    <td>{{ stock.Comment }}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'payment_update_page' stock.id %}">Update</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'payment_delete_page' stock.id %}">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

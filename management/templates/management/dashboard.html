@@ -1,0 +1,57 @@
+{% extends 'management/mainpg.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+
+    <div class="col-md-5">
+        <h5>SUPPLIERS DETAILS</h5>        
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="">Create New Supplier</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>Buy</th>
+                    <th>Sell</th>
+                </tr>
+                {% for supp in Suppliers %}
+                <tr>
+                    <td>{{ supp.Supplier_Name }}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'supp_page' supp.id %}">Buy</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'cust_page' supp.id %}">Sell</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <h5>Last 5 Orders</h5>
+        
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>Product Name</th>
+                    <th>Size</th>
+                    <th>Pcs</th>
+                    <th>Total Cost</th>
+                </tr>
+                {% for stock in Sup_ord %}
+                <tr>
+                    <td>{{ stock.sup_name }}</td>
+                    <td>{{ stock.product_name }}</td>                    
+                    <td>{{ stock.size }}</td>
+                    <td>{{ stock.pcs }}</td>
+                    <td>{{ stock.total_cost }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

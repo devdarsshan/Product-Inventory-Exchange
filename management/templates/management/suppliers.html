@@ -1,0 +1,93 @@
+{% extends 'management/mainpg.html' %}
+
+{% block content %}
+
+{% include 'management/status.html' %}
+
+<br>
+
+<div class="row">
+    <div class="col-md-5">
+        <h5>  SUPPLIERS STOCK DETAILS</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'newproduct_page' sup_id %}">Create New Product</a>
+            <br>
+            <table class="table table-sm">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Size</th>
+                    <th>Pcs</th>
+                    <th>Cost per Pc</th>
+                    <th>Total Cost</th>
+                    <th>IN-STOCK</th>
+                </tr>
+                {% for stock in sup_stk %}
+                <tr>
+                    <td>{{ stock.Product_name }}</td>
+                    <td>{{ stock.Size }}</td>
+                    <td>{{ stock.Pcs }}</td>
+                    <td>{{ stock.Pcs_cost }}</td>
+                    <td>{{ stock.Total_size_cost }}</td>
+                    <td>{{ stock.In_Stock }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h5>Recent Orders</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'supp_order_page' sup_id %}">Create New Order</a>
+            <a class="btn btn-outline-Danger btn-sm btn-block " href="{% url 'ord_list_page' sup_id %}">View Full List</a>
+            <br>
+            <table class="table table-sm">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Date</th>
+                    <th>Size</th>
+                    <th>Pcs</th>
+                    <th>Total Cost</th>
+                </tr>
+                {% for stock in sup_ord %}
+                <tr>
+                    <td>{{ stock.product_name }}</td>
+                    <td>{{ stock.Date }}</td>
+                    <td>{{ stock.size }}</td>
+                    <td>{{ stock.pcs }}</td>
+                    <td>{{ stock.total_cost }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <h5>Recent Payments</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-Danger btn-sm btn-block " href="{% url 'payment_order_page' sup_id %}">Pay Now</a>
+            <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'pay_page' sup_id %}">View Full List</a>
+            <br>
+            <table class="table table-sm">
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
+                </tr>
+                {% for stock in pay_det %}
+                <tr>
+                    <td>{{ stock.Date }}</td>
+                    <td>{{ stock.Amount_payed }}</td>
+                    <td>{{ stock.Comment }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}
